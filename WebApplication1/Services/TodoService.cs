@@ -30,11 +30,11 @@ namespace WebApplication1.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateTodoItemAsync(TodoItem todoItem)
-        {
-            _context.Entry(todoItem).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
+        //public async Task UpdateTodoItemAsync(TodoItem todoItem)
+        //{
+        //    _context.Entry(todoItem).State = EntityState.Modified;
+        //    await _context.SaveChangesAsync();
+        //}
 
         public async Task DeleteTodoItemAsync(long id)
         {
