@@ -1,0 +1,47 @@
+﻿name: .NET Web API CI/CD
+ 
+on:
+  push:
+    branches: [ main ]   # Runs whenever you push to main branch
+  pull_request:
+    branches: [ main ]
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use latest Ubuntu environment
+ 
+    steps:
+      # 1️⃣ Checkout your code from GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v3
+ 
+      # 2️⃣ Setup .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x   # use your .NET version
+ 
+      # 3️⃣ Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+ 
+      # 4️⃣ Build the project
+      - name: Build the project
+        run: dotnet build --configuration Release --no-restore
+ 
+      # 5️⃣ Run tests (optional)
+      - name: Run unit tests
+        run: dotnet test --no-build --verbosity normal
+ 
+      # 6️⃣ Publish the Web API (creates compiled output)
+      - name: Publish the app
+        run: dotnet publish -c Release -o ./publish
+ 
+      # 7️⃣ (Optional) Deploy to Azure Web App
+      # For this you’ll need to create an Azure publish profile (explained below)
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "YourAppServiceName" # 👈 Replace with your Azure App name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
