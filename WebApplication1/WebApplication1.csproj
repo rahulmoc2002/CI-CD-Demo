@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".github\workflows\ci-cd.yaml" />
+    <None Include=".github\workflows\main.yaml" />
   </ItemGroup>
 
 </Project>
