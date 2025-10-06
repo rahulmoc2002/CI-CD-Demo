@@ -42,13 +42,13 @@ namespace WebApplication1.Controllers
             return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutTodoItem(TodoItem todoItem)
-        //{ 
-            
-        //    await _todoService.UpdateTodoItemAsync(todoItem);
-        //    return NoContent();
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoItem(TodoItem todoItem)
+        {
+
+            await _todoService.UpdateTodoItemAsync(todoItem);
+            return NoContent();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
