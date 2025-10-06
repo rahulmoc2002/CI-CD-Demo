@@ -2,9 +2,9 @@
  
 on:
   push:
-    branches: [ main ]   # Runs whenever you push to main branch
+    branches: [ master ]   # Runs whenever you push to main branch
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
  
 jobs:
   build:
